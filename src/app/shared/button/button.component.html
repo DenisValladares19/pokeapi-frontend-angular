@@ -1,0 +1,18 @@
+@if(outline) {
+<button mat-stroked-button color="primary" [disabled]="disabled" [type]="type">
+  <span class="container-label">
+    <mat-icon *ngIf="prefixIcon">{{ prefixIcon }}</mat-icon>
+    {{ label }}
+    <mat-icon *ngIf="suffixIcon">{{ suffixIcon }}</mat-icon>
+  </span>
+</button>
+} @else {
+<button mat-flat-button color="primary" [disabled]="disabled" [type]="type">
+  <span class="container-label">
+    <mat-icon *ngIf="prefixIcon">{{ prefixIcon }}</mat-icon>
+    {{ label }}
+    <mat-icon *ngIf="suffixIcon">{{ suffixIcon }}</mat-icon>
+  </span>
+</button>
+
+}

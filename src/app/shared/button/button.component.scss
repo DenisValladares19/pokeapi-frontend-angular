@@ -1,0 +1,29 @@
+::ng-deep .mat-mdc-unelevated-button:not(:disabled) {
+  background-color: var(--primary-color) !important;
+  padding: 10px 30px;
+}
+
+::ng-deep .mat-mdc-outlined-button:not(:disabled) {
+  border-color: var(--primary-color) !important;
+  color: var(--primary-color) !important;
+  padding: 10px 30px;
+}
+
+::ng-deep .mat-mdc-unelevated-button[disabled],
+.mat-mdc-unelevated-button.mat-mdc-button-disabled,
+.mat-mdc-outlined-button[disabled],
+.mat-mdc-outlined-button.mat-mdc-button-disabled {
+  padding: 10px 30px;
+}
+
+.container-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+::ng-deep .container-label .mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
