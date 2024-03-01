@@ -107,3 +107,9 @@
   .mdc-floating-label {
   color: var(--error-color) !important;
 }
+
+// styles for disabled input
+::ng-deep .mdc-text-field--filled.mdc-text-field--disabled {
+  border-radius: 10px;
+  border: 1px solid var(--neutral-color);
+}
