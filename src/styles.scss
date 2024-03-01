@@ -55,6 +55,22 @@ $pokeapi-frontend-theme: mat.define-light-theme(
   display: flex;
 }
 
+.gap-10 {
+  gap: 10px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
 :root {
   --primary-color: #01426a;
   --secondary-color: #454545;
