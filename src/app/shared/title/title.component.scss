@@ -1,0 +1,19 @@
+.container-title {
+  margin-bottom: 10px;
+}
+
+::ng-deep .flex .mat-icon {
+  color: var(--primary-color) !important;
+  cursor: pointer;
+  font-size: 35px;
+  width: 30px;
+  height: 35px;
+  transform: translateY(10px);
+}
+
+.flex .flex.flex-column h1 {
+  font-weight: 500;
+  line-height: 52.5px;
+  font-size: 35px;
+  color: var(--primary-color);
+}

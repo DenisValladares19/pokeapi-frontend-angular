@@ -55,6 +55,10 @@ $pokeapi-frontend-theme: mat.define-light-theme(
   display: flex;
 }
 
+.flex-column {
+  flex-direction: column;
+}
+
 .gap-10 {
   gap: 10px;
 }
