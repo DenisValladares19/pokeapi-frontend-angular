@@ -82,3 +82,9 @@ $pokeapi-frontend-theme: mat.define-light-theme(
   --neutral-color: #868686;
   --error-color: red;
 }
+
+.profile-card {
+  background-color: var(--tertiary-color);
+  border-radius: 50px;
+  padding: 20px;
+}
