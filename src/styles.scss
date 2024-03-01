@@ -46,3 +46,15 @@ $pokeapi-frontend-theme: mat.define-light-theme(
   padding: 0;
   font-family: Poppins, sans-serif;
 }
+
+.w-100 {
+  width: 100%;
+}
+
+:root {
+  --primary-color: #01426a;
+  --secondary-color: #454545;
+  --tertiary-color: #ffc600;
+  --neutral-color: #868686;
+  --error-color: red;
+}

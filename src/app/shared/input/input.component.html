@@ -1,0 +1,19 @@
+<div class="container-input">
+  <mat-form-field class="w-100" [className]="getClassName()">
+    <mat-label>{{ label }} </mat-label>
+    <input
+      matInput
+      [value]="value"
+      [placeholder]="placeholder"
+      [required]="required"
+      [readOnly]="readOnly || disabled"
+      (input)="onInputChange($event)"
+    />
+  </mat-form-field>
+
+  <div *ngIf="isError()" class="container-errors">
+    <p class="text-error" *ngFor="let error of getListErrors(control?.errors)">
+      {{ error }}
+    </p>
+  </div>
+</div>
