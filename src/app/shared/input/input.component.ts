@@ -43,8 +43,6 @@ export class InputComponent implements ControlValueAccessor {
   disabled = false;
 
   onInputChange(event: any) {
-    console.log(event);
-
     if (this.disabled) return;
     this.value = event.target.value;
     this.onTouched();
