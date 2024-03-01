@@ -1,6 +1,9 @@
 import { Component, Input, forwardRef } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormField } from '@angular/material/form-field';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { provideNativeDateAdapter } from '@angular/material/core';
+
 import {
   AbstractControl,
   ControlValueAccessor,
@@ -12,7 +15,7 @@ import { NgFor, NgIf } from '@angular/common';
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [MatInputModule, MatFormField, NgIf, NgFor],
+  imports: [MatInputModule, MatFormField, NgIf, NgFor, MatDatepickerModule],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
   providers: [
@@ -21,6 +24,7 @@ import { NgFor, NgIf } from '@angular/common';
       multi: true,
       useExisting: forwardRef(() => InputComponent),
     },
+    provideNativeDateAdapter(),
   ],
 })
 export class InputComponent implements ControlValueAccessor {
@@ -29,6 +33,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() required: boolean = false;
   @Input() readOnly: boolean = false;
   @Input() control?: AbstractControl;
+  @Input() typeInput?: 'text' | 'date' | 'number' = 'text';
 
   value: any = '';
   onChange = (value: any) => {};
@@ -37,6 +42,8 @@ export class InputComponent implements ControlValueAccessor {
   disabled = false;
 
   onInputChange(event: any) {
+    console.log(event);
+
     if (this.disabled) return;
     this.value = event.target.value;
     this.onTouched();

@@ -1,8 +1,26 @@
 <div class="container-input">
+  @if(typeInput == 'date') {
   <mat-form-field class="w-100" [className]="getClassName()">
     <mat-label>{{ label }} </mat-label>
     <input
       matInput
+      [matDatepicker]="picker"
+      [value]="value"
+      [placeholder]="placeholder"
+      [required]="required"
+      [readOnly]="readOnly || disabled"
+      (dateChange)="onInputChange($event)"
+    />
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  }@else {
+  <mat-form-field class="w-100" [className]="getClassName()">
+    <mat-label>{{ label }} </mat-label>
+
+    <input
+      matInput
+      [type]="typeInput || 'text'"
       [value]="value"
       [placeholder]="placeholder"
       [required]="required"
@@ -10,6 +28,8 @@
       (input)="onInputChange($event)"
     />
   </mat-form-field>
+
+  }
 
   <div *ngIf="isError()" class="container-errors">
     <p class="text-error" *ngFor="let error of getListErrors(control?.errors)">

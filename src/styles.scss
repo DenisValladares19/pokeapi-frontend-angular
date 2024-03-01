@@ -51,6 +51,10 @@ $pokeapi-frontend-theme: mat.define-light-theme(
   width: 100%;
 }
 
+.flex {
+  display: flex;
+}
+
 :root {
   --primary-color: #01426a;
   --secondary-color: #454545;
