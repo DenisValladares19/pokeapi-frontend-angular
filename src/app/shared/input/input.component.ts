@@ -34,6 +34,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() readOnly: boolean = false;
   @Input() control?: AbstractControl;
   @Input() typeInput?: 'text' | 'date' | 'number' = 'text';
+  @Input() disable?: boolean;
 
   value: any = '';
   onChange = (value: any) => {};
