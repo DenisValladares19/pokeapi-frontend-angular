@@ -1,0 +1,63 @@
+// hidden checkbox in options
+::ng-deep .mat-mdc-option .mat-pseudo-checkbox {
+  display: none;
+}
+
+// changes styles for dropdown
+::ng-deep
+  .cdk-overlay-pane:not(.mat-mdc-select-panel-above)
+  div.mat-mdc-select-panel {
+  border-radius: 10px !important;
+  padding: 0px !important;
+}
+
+::ng-deep .mat-mdc-option:hover:not(.mdc-list-item--disabled),
+.mat-mdc-option.mdc-list-item--selected {
+  background-color: #e7eff5 !important;
+}
+
+::ng-deep .mat-mdc-option .mdc-list-item__primary-text {
+  color: var(--primary-color) !important;
+}
+
+::ng-deep .mat-mdc-option.mdc-list-item {
+  border-bottom: 0.5px solid var(--primary-color);
+}
+
+::ng-deep .mat-mdc-option.mdc-list-item:last-child {
+  border-bottom: none;
+}
+
+.container-all-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.tag-container {
+  display: flex;
+  width: fit-content;
+  background-color: #21212114;
+  border-radius: 16px;
+  padding: 5px 5px 5px 10px;
+  align-items: center;
+
+  .icon-remove {
+    border-radius: 50%;
+    background-color: #00000099;
+    height: 20px;
+    width: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 5px;
+    cursor: pointer;
+  }
+}
+
+::ng-deep .icon-remove .mat-icon {
+  color: #fff;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}

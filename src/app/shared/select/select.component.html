@@ -1,0 +1,43 @@
+<div class="container-input">
+  <mat-form-field class="w-100" [className]="getClassName()">
+    <mat-label>{{ label }}</mat-label>
+    <mat-select
+      [(value)]="value"
+      [placeholder]="placeholder"
+      [required]="required"
+      (valueChange)="onInputChange($event)"
+      [disabled]="disabled || disable"
+      multiple
+    >
+      <mat-select-trigger>
+        @if (value.length || 0) {
+        <div class="container-all-tags">
+          @for(item of value; track item) {
+          <div class="tag-container">
+            {{ getValueOption(item) }}
+            <div class="icon-remove" (click)="onClickRemove($event, item)">
+              <mat-icon
+                aria-hidden="false"
+                aria-label="icon close"
+                fontIcon="close"
+              ></mat-icon>
+            </div>
+          </div>
+          }
+        </div>
+        }
+      </mat-select-trigger>
+      @for (option of options; track option) {
+      <mat-option [value]="option.key">{{ option.value }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  @if (isError()) {
+  <div class="container-errors">
+    <p class="text-error" *ngFor="let error of getListErrors(control?.errors)">
+      {{ error }}
+    </p>
+  </div>
+  }
+</div>

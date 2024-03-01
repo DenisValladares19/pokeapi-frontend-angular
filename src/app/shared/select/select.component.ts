@@ -1,42 +1,41 @@
 import { Component, Input, forwardRef } from '@angular/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormField } from '@angular/material/form-field';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { provideNativeDateAdapter } from '@angular/material/core';
 
+import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { NgFor } from '@angular/common';
 import {
   AbstractControl,
   ControlValueAccessor,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
+import { SelectOption } from '../../interfaces/SelectOption';
 import { keysErrors } from '../../interfaces/KeysError.input';
-import { NgFor, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-input',
+  selector: 'app-select',
   standalone: true,
-  imports: [MatInputModule, MatFormField, NgIf, NgFor, MatDatepickerModule],
-  templateUrl: './input.component.html',
-  styleUrl: './input.component.scss',
+  imports: [MatFormFieldModule, MatSelectModule, NgFor, MatIconModule],
+  templateUrl: './select.component.html',
+  styleUrls: ['./select.component.scss', '../input/input.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
       multi: true,
-      useExisting: forwardRef(() => InputComponent),
+      useExisting: forwardRef(() => SelectComponent),
     },
-    provideNativeDateAdapter(),
   ],
 })
-export class InputComponent implements ControlValueAccessor {
+export class SelectComponent implements ControlValueAccessor {
   @Input() label: string = '';
   @Input() placeholder: string = '';
   @Input() required: boolean = false;
   @Input() readOnly: boolean = false;
   @Input() control?: AbstractControl;
-  @Input() typeInput?: 'text' | 'date' | 'number' = 'text';
   @Input() disable?: boolean;
+  @Input() options?: SelectOption[] = [];
 
-  value: any = '';
+  value: string[] = [];
   onChange = (value: any) => {};
   onTouched = () => {};
   touched = false;
@@ -44,7 +43,7 @@ export class InputComponent implements ControlValueAccessor {
 
   onInputChange(event: any) {
     if (this.disabled) return;
-    this.value = event.target.value;
+    this.value = event;
     this.onTouched();
     this.onChange(this.value);
     this.markAsTouched();
@@ -95,9 +94,32 @@ export class InputComponent implements ControlValueAccessor {
 
   getClassName(): string {
     if (this.isError()) {
-      return 'error mat-mdc-form-field w-100 mat-mdc-form-field-type-mat-input mat-form-field-appearance-fill mat-form-field-hide-placeholder';
+      return 'error mat-mdc-form-field w-100 mat-mdc-form-field-type-mat-select mat-form-field-appearance-fill mat-primary ng-tns-c2608167813-0 mat-form-field-hide-placeholder';
     }
 
-    return 'mat-mdc-form-field mat-mdc-form-field-type-mat-input mat-form-field-appearance-fill mat-form-field-hide-placeholder';
+    return 'mat-mdc-form-field w-100 mat-mdc-form-field-type-mat-select mat-form-field-appearance-fill mat-primary mat-form-field-hide-placeholder';
   }
+
+  onClickRemove(event: MouseEvent, key: string): void {
+    event.preventDefault();
+    event.stopPropagation();
+    this.deleteItem(key);
+  }
+
+  deleteItem(key: string): void {
+    if (!key) return;
+    if (!this.value) return;
+    if (this.value.length === 0) return;
+
+    const result = this.value.filter((item) => item !== key);
+    this.onInputChange(result);
+  }
+
+  getValueOption = (key: string): string => {
+    if (!key) return '';
+
+    const result = this.options?.find((item) => item.key === key);
+
+    return result?.value || '';
+  };
 }
