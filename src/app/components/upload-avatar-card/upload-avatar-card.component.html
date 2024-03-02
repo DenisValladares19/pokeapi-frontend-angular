@@ -1,0 +1,30 @@
+<div class="profile-card">
+  <h3>Imagen perfil</h3>
+  <app-avatar [imageUrl]="imageUrl"></app-avatar>
+
+  <input
+    type="file"
+    (change)="handleUploadImage($event)"
+    accept="image/*"
+    #inputFile
+    hidden
+  />
+
+  @if(imageUrl) {
+  <div class="button-upload">
+    {{ filename }}
+    <mat-icon
+      aria-hidden="false"
+      class="delete-icon"
+      fontIcon="delete"
+      (click)="handleDeleteImage()"
+    ></mat-icon>
+  </div>
+
+  }@else {
+  <div class="button-upload" (click)="inputFile.click()">
+    Adjunta una foto
+    <mat-icon aria-hidden="false" fontIcon="cloud_upload"></mat-icon>
+  </div>
+  }
+</div>
