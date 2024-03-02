@@ -5,12 +5,13 @@ import { routes } from './app.routes';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { provideStore } from '@ngrx/store';
+import { ROOT_REDUCERS } from './store/app.state';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
     provideAnimationsAsync(),
     provideEnvironmentNgxMask(),
-    provideStore()
-],
+    provideStore(ROOT_REDUCERS),
+  ],
 };
