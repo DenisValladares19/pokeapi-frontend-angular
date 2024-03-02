@@ -12,10 +12,10 @@
 
   @if(imageUrl) {
   <div class="button-upload">
-    {{ filename }}
+    {{ filename | formatFilename }}
     <mat-icon
       aria-hidden="false"
-      class="delete-icon"
+      class="avatar-delete-icon"
       fontIcon="delete"
       (click)="handleDeleteImage()"
     ></mat-icon>
