@@ -11,6 +11,8 @@
       [readOnly]="readOnly || disabled"
       (dateChange)="onInputChange($event)"
       [disabled]="disabled || disable"
+      [max]="maxDate"
+      [min]="minDate"
     />
     <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>

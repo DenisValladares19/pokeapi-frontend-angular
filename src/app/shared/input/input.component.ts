@@ -2,7 +2,11 @@ import { Component, Input, forwardRef } from '@angular/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormField } from '@angular/material/form-field';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { provideNativeDateAdapter } from '@angular/material/core';
+import { provideMomentDateAdapter } from '@angular/material-moment-adapter';
+import * as _moment from 'moment';
+import 'moment/locale/es';
+// tslint:disable-next-line:no-duplicate-imports
+import { Moment } from 'moment';
 
 import {
   AbstractControl,
@@ -11,6 +15,8 @@ import {
 } from '@angular/forms';
 import { keysErrors } from '../../interfaces/KeysError.input';
 import { NgFor, NgIf } from '@angular/common';
+import { MY_FORMATS } from '../Date.utils';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 @Component({
   selector: 'app-input',
@@ -24,7 +30,8 @@ import { NgFor, NgIf } from '@angular/common';
       multi: true,
       useExisting: forwardRef(() => InputComponent),
     },
-    provideNativeDateAdapter(),
+    { provide: MAT_DATE_LOCALE, useValue: 'es-ES' },
+    provideMomentDateAdapter(MY_FORMATS),
   ],
 })
 export class InputComponent implements ControlValueAccessor {
@@ -35,6 +42,8 @@ export class InputComponent implements ControlValueAccessor {
   @Input() control?: AbstractControl;
   @Input() typeInput?: 'text' | 'date' | 'number' = 'text';
   @Input() disable?: boolean;
+  @Input() minDate?: Moment;
+  @Input() maxDate?: Moment;
 
   value: any = '';
   onChange = (value: any) => {};
