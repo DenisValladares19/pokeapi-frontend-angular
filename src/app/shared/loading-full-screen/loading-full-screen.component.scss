@@ -1,0 +1,18 @@
+.container-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: calc(100vh - 90px);
+
+  img {
+    width: 350px;
+  }
+
+  .text {
+    font-size: 25px;
+    color: var(--primary-color);
+    font-weight: 700;
+  }
+}
