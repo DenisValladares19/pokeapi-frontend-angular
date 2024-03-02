@@ -1,0 +1,21 @@
+.profile-card .profile-name {
+  text-align: center;
+  color: var(--primary-color);
+  font-weight: 700;
+  min-width: 300px;
+  font-size: 25px;
+  margin: 20px 0px;
+}
+
+.profile-card .item {
+  display: flex;
+  justify-content: space-between;
+  min-width: 250px;
+  color: rgba(75, 75, 75, 1);
+  margin-top: 7px;
+
+  span {
+    max-width: 150px;
+    text-align: right;
+  }
+}
