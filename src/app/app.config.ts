@@ -6,6 +6,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideEnvironmentNgxMask } from 'ngx-mask';
 import { provideStore } from '@ngrx/store';
 import { ROOT_REDUCERS } from './store/app.state';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -13,5 +14,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideEnvironmentNgxMask(),
     provideStore(ROOT_REDUCERS),
+    provideHttpClient(),
   ],
 };
