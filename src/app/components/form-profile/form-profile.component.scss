@@ -1,0 +1,17 @@
+.flex.flex-column h3 {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.flex.flex-column {
+  max-width: 400px;
+
+  form {
+    margin-top: 10px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+}

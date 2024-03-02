@@ -1,0 +1,52 @@
+<div class="flex flex-column">
+  <h3>Tu información</h3>
+  <p>Completa la siguiente información para completar tu perfil</p>
+  <form [formGroup]="form">
+    <app-input
+      formControlName="name"
+      [control]="form.controls['name']"
+      label="Nombre"
+      [required]="true"
+    ></app-input>
+    <app-select
+      formControlName="hobbies"
+      [control]="form.controls['hobbies']"
+      label="Pasatiempo favorito"
+      [options]="favoriteHobbies"
+    ></app-select>
+    <app-input
+      label="Cumpleaños"
+      typeInput="date"
+      [required]="true"
+      [maxDate]="getMaxDate()"
+      formControlName="birthDate"
+      [control]="form.controls['birthDate']"
+    ></app-input>
+
+    @if(form.controls['birthDate'].value) {
+    @if(isAdult(form.controls['birthDate'].value)) {
+    <app-input
+      label="DUI"
+      mask="00000000-0"
+      placeholder="00000000-0"
+      formControlName="document"
+      [control]="form.controls['document']"
+      [required]="true"
+    ></app-input>
+    } @else {
+    <app-input
+      label="Carnet de minoridad"
+      formControlName="minorityCard"
+      [control]="form.controls['minorityCard']"
+    ></app-input>
+    } }
+    <div class="flex justify-center">
+      <app-button
+        (click)="onSubmit()"
+        label="Continuar"
+        [disabled]="form.invalid"
+      ></app-button>
+    </div>
+  </form>
+  <br />
+</div>
