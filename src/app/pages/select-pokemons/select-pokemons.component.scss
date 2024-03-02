@@ -1,0 +1,30 @@
+.container-select-pokemon {
+  display: flex;
+  gap: 20px;
+
+  .container-profile,
+  .container-list-pokemon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .container-profile {
+    width: 40%;
+  }
+
+  .container-list-pokemon {
+    width: 60%;
+  }
+}
+
+@media (max-width: 1025px) {
+  .container-select-pokemon {
+    flex-direction: column;
+  }
+
+  .container-list-pokemon,
+  .container-profile {
+    width: 100% !important;
+  }
+}

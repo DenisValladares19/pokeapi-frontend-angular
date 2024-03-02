@@ -1,1 +1,17 @@
+@if(loading) {
 <app-loading-full-screen></app-loading-full-screen>
+}@else {
+<app-title
+  title="¡Ya casi terminamos!"
+  subtitle="Revisa la información, y completa lo solicitado."
+  redirectTo="/"
+></app-title>
+<div class="container-select-pokemon">
+  <div class="container-profile">
+    <app-card-profile></app-card-profile>
+  </div>
+  <div class="container-list-pokemon">
+    <app-pokemon-list [pokemons]="pokemons"></app-pokemon-list>
+  </div>
+</div>
+}
