@@ -1,0 +1,16 @@
+<app-title
+  title="¡Hola! Configuremos tu perfil"
+  subtitle="Queremos conocerte mejor."
+  redirectTo="/"
+></app-title>
+
+<div class="container-create-profile">
+  <div class="container-load-avatar">
+    <app-upload-avatar-card
+      (onUpload)="onChangeImageUrl($event)"
+    ></app-upload-avatar-card>
+  </div>
+  <div class="container-form-profile">
+    <app-form-profile [imageUrl]="imageUrl"></app-form-profile>
+  </div>
+</div>
