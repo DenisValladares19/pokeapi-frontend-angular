@@ -2,11 +2,12 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { AvatarComponent } from '../../shared/avatar/avatar.component';
 import { MatIconModule } from '@angular/material/icon';
 import { getBase64 } from '../../shared/Base64.utils';
+import { FormatFilenamePipe } from '../../pipes/format-filename.pipe';
 
 @Component({
   selector: 'app-upload-avatar-card',
   standalone: true,
-  imports: [AvatarComponent, MatIconModule],
+  imports: [AvatarComponent, MatIconModule, FormatFilenamePipe],
   templateUrl: './upload-avatar-card.component.html',
   styleUrl: './upload-avatar-card.component.scss',
 })
