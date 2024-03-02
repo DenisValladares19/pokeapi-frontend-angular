@@ -31,5 +31,6 @@ export class UploadAvatarCardComponent {
   handleDeleteImage(): void {
     this.filename = '';
     this.imageUrl = '';
+    this.onUpload.emit('');
   }
 }
