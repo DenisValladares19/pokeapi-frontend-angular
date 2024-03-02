@@ -17,11 +17,19 @@ import { keysErrors } from '../../interfaces/KeysError.input';
 import { NgFor, NgIf } from '@angular/common';
 import { MY_FORMATS } from '../Date.utils';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { NgxMaskDirective } from 'ngx-mask';
 
 @Component({
   selector: 'app-input',
   standalone: true,
-  imports: [MatInputModule, MatFormField, NgIf, NgFor, MatDatepickerModule],
+  imports: [
+    MatInputModule,
+    MatFormField,
+    NgIf,
+    NgFor,
+    MatDatepickerModule,
+    NgxMaskDirective,
+  ],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
   providers: [
@@ -44,6 +52,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() disable?: boolean;
   @Input() minDate?: Moment;
   @Input() maxDate?: Moment;
+  @Input() mask?: string;
 
   value: any = '';
   onChange = (value: any) => {};
