@@ -1,0 +1,26 @@
+<div class="flex flex-column">
+  <h3>Pokémon</h3>
+  <p>Selecciona 3 Pokémon para que sean parte de tu equipo</p>
+
+  <div class="container-pokemons">
+    @for (pokemon of pokemons; track $index) {
+    <app-card-pokemon-preview
+      [image]="getImageUrl(getIdFromURL(pokemon.url))"
+      [id]="getIdFromURL(pokemon.url)"
+      [name]="pokemon.name"
+      (onSelectPokemon)="handleClick($event)"
+      [isSelected]="isSelected(pokemon.name)"
+      [disabled]="pokemonNameSelected.length === 3"
+    ></app-card-pokemon-preview>
+    }
+  </div>
+  <br />
+  <div class="flex justify-center">
+    <app-button
+      label="Continuar"
+      [disabled]="pokemonNameSelected.length < 3"
+    ></app-button>
+  </div>
+
+  <br />
+</div>

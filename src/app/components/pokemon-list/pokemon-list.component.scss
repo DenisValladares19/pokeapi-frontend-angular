@@ -1,0 +1,30 @@
+.flex.flex-column h3 {
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--primary-color);
+}
+
+.flex.flex-column {
+  p {
+    font-size: 14px;
+  }
+}
+
+.container-pokemons {
+  display: grid;
+  flex-wrap: wrap;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 650px) {
+  .container-pokemons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 450px) {
+  .container-pokemons {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
