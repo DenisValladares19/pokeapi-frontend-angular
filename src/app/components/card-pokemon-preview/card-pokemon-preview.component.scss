@@ -1,0 +1,39 @@
+.container-card-preview {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background-color: rgba(242, 242, 242, 1);
+  border-radius: 20px;
+  height: 90px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 40px;
+  cursor: pointer;
+  position: relative;
+
+  .title {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  img {
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    top: -32px;
+  }
+}
+
+.container-card-preview.selected {
+  background-color: var(--tertiary-color);
+}
+
+.container-card-preview.disabled {
+  opacity: 0.5;
+  cursor: no-drop;
+}
