@@ -5,9 +5,9 @@ import { Pipe, PipeTransform } from '@angular/core';
   standalone: true,
 })
 export class FormatFilenamePipe implements PipeTransform {
-  MAX_LEN = 20;
+  private MAX_LEN = 20;
+
   transform(value: string, ...args: unknown[]): string {
-    console.log(value);
     if (!value) return '';
     if (value.length <= this.MAX_LEN) return value;
 
