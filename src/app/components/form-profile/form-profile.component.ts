@@ -12,6 +12,11 @@ import { ButtonComponent } from '../../shared/button/button.component';
 import { SelectOption } from '../../interfaces/SelectOption';
 import { default as moment, Moment } from 'moment';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Profile } from '../../interfaces/Profile';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/app.state';
+import { setDataProfile } from '../../store/actions/Profile.actions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-profile',
@@ -39,7 +44,12 @@ export class FormProfileComponent {
 
   form: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private snackBar: MatSnackBar) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar,
+    private store: Store<AppState>,
+    private router: Router
+  ) {
     this.form = this.formBuilder.group({
       name: ['', [Validators.required]],
       hobbies: [[]],
@@ -74,6 +84,30 @@ export class FormProfileComponent {
       });
       return;
     }
-    console.log(this.form.value);
+
+    const newProfile: Profile = {
+      name: this.form.value.name,
+      birthDate: moment(this.form.value.birthDate),
+      image: this.imageUrl,
+      hobbies: this.getFavoriteHobbies(this.form.value.hobbies),
+      document: this.form.value.document,
+      minorityCard: this.form.value.minorityCard,
+    };
+
+    this.store.dispatch(setDataProfile({ data: newProfile }));
+    this.router.navigateByUrl('/pokemons');
+  }
+
+  private getFavoriteHobbies(hobbiesId?: string[]): string[] {
+    if (!hobbiesId) return [];
+    if (!Array.isArray(hobbiesId)) return [];
+
+    const result = this.favoriteHobbies
+      .filter((hobby) => {
+        return hobbiesId.find((item) => item === hobby.key);
+      })
+      .map((hobby) => hobby.value);
+
+    return result;
   }
 }
