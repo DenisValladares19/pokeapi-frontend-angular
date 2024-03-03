@@ -1,12 +1,14 @@
 ::ng-deep .mat-mdc-unelevated-button:not(:disabled) {
   background-color: var(--primary-color) !important;
   padding: 20px 30px;
+  border-radius: 10px;
 }
 
 ::ng-deep .mat-mdc-outlined-button:not(:disabled) {
   border-color: var(--primary-color) !important;
   color: var(--primary-color) !important;
   padding: 20px 30px;
+  border-radius: 10px;
 }
 
 ::ng-deep .mat-mdc-unelevated-button[disabled],
@@ -14,6 +16,7 @@
 .mat-mdc-outlined-button[disabled],
 .mat-mdc-outlined-button.mat-mdc-button-disabled {
   padding: 10px 30px;
+  border-radius: 10px;
 }
 
 .container-label {
