@@ -1,9 +1,10 @@
 <div class="flex flex-column">
   <h3>Pokémon</h3>
   <p>Selecciona 3 Pokémon para que sean parte de tu equipo</p>
-
+  <app-input-search (onSearch)="handleSearch($event)"></app-input-search>
+  <br />
   <div class="container-pokemons">
-    @for (pokemon of pokemons; track $index) {
+    @for (pokemon of filterPokemons(pokemons, searchQuery); track $index) {
     <app-card-pokemon-preview
       [image]="getImageUrl(getIdFromURL(pokemon.url))"
       [id]="getIdFromURL(pokemon.url)"
@@ -19,6 +20,7 @@
     <app-button
       label="Continuar"
       [disabled]="pokemonNameSelected.length < 3"
+      (click)="onSubmit()"
     ></app-button>
   </div>
 

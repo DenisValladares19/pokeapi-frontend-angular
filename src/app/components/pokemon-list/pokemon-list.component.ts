@@ -17,6 +17,7 @@ import { InputSearchComponent } from '../../shared/input-search/input-search.com
 export class PokemonListComponent {
   @Input() pokemons: PokemonInit[] = [];
   pokemonNameSelected: string[] = [];
+  searchQuery: string = '';
 
   constructor(private store: Store<AppState>) {}
 
@@ -68,5 +69,19 @@ export class PokemonListComponent {
     ) as PokemonInit[];
 
     this.store.dispatch(setPokemonSelected({ data: pokemonList }));
+  }
+
+  filterPokemons(pokemonList: PokemonInit[], query: string): PokemonInit[] {
+    if (!query) return pokemonList;
+    if (!pokemonList) return [];
+
+    return pokemonList.filter((pokemon) => {
+      if (this.getIdFromURL(pokemon.url).toString() === query) return true;
+      return pokemon.name.includes(query);
+    });
+  }
+
+  handleSearch(query: string) {
+    this.searchQuery = query;
   }
 }
