@@ -13,10 +13,12 @@
       {{ getAge((profile$ | async)?.birthDate) }} años
     </div>
 
+    @if((profile$ | async)?.document) {
     <div class="item">
       <strong>DUI:</strong>
       {{ (profile$ | async)?.document }}
     </div>
+    }
   </div>
   <br />
 </div>
