@@ -4,7 +4,7 @@ import { TitleComponent } from '../../shared/title/title.component';
 import { CardProfileComponent } from '../../components/card-profile/card-profile.component';
 import { PokemonListComponent } from '../../components/pokemon-list/pokemon-list.component';
 import { PokemonInit } from '../../interfaces/Pokemon.init';
-import { ApiService } from '../../services/api.service';
+import { PokemonService } from '../../services/pokemon.service';
 
 @Component({
   selector: 'app-select-pokemons',
@@ -22,26 +22,21 @@ export class SelectPokemonsComponent implements OnInit {
   pokemons: PokemonInit[] = [];
   loading: boolean = false;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
     this.loading = true;
-    this.apiService
-      .fetch<PokemonInit[]>({
-        endpoint: '/pokemon',
-        params: { limit: '100' },
-      })
-      .subscribe({
-        next: (result) => {
-          this.pokemons = result.results;
-          setTimeout(() => {
-            this.loading = false;
-          }, 1000);
-        },
-        error: (error) => {
-          console.log('[error load pokemon]', error);
+    this.pokemonService.getAllPokemon().subscribe({
+      next: (result) => {
+        this.pokemons = result.results;
+        setTimeout(() => {
           this.loading = false;
-        },
-      });
+        }, 1000);
+      },
+      error: (error) => {
+        console.log('[error load pokemon]', error);
+        this.loading = false;
+      },
+    });
   }
 }
