@@ -29,7 +29,7 @@ export class SelectPokemonsComponent implements OnInit {
     this.apiService
       .fetch<PokemonInit[]>({
         endpoint: '/pokemon',
-        params: { limit: '9' },
+        params: { limit: '100' },
       })
       .subscribe({
         next: (result) => {

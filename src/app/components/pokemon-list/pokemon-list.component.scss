@@ -9,8 +9,12 @@
     font-size: 14px;
   }
 }
-
 .container-pokemons {
+  width: 600px;
+  height: 450px;
+}
+
+::ng-deep.container-pokemons .cdk-virtual-scroll-content-wrapper {
   display: grid;
   flex-wrap: wrap;
   grid-template-columns: repeat(3, 1fr);
@@ -18,13 +22,17 @@
 }
 
 @media (max-width: 650px) {
-  .container-pokemons {
+  ::ng-deep.container-pokemons .cdk-virtual-scroll-content-wrapper {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .container-pokemons {
+    width: 100%;
   }
 }
 
 @media (max-width: 450px) {
-  .container-pokemons {
+  ::ng-deep.container-pokemons .cdk-virtual-scroll-content-wrapper {
     grid-template-columns: repeat(1, 1fr);
   }
 }

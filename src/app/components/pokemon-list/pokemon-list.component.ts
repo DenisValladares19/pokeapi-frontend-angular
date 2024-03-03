@@ -6,11 +6,17 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 import { setPokemonSelected } from '../../store/actions/Profile.actions';
 import { InputSearchComponent } from '../../shared/input-search/input-search.component';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 @Component({
   selector: 'app-pokemon-list',
   standalone: true,
-  imports: [CardPokemonPreviewComponent, ButtonComponent, InputSearchComponent],
+  imports: [
+    CardPokemonPreviewComponent,
+    ButtonComponent,
+    InputSearchComponent,
+    ScrollingModule,
+  ],
   templateUrl: './pokemon-list.component.html',
   styleUrl: './pokemon-list.component.scss',
 })

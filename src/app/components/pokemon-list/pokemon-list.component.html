@@ -3,9 +3,9 @@
   <p>Selecciona 3 Pokémon para que sean parte de tu equipo</p>
   <app-input-search (onSearch)="handleSearch($event)"></app-input-search>
   <br />
-  <div class="container-pokemons">
-    @for (pokemon of filterPokemons(pokemons, searchQuery); track $index) {
+  <cdk-virtual-scroll-viewport itemSize="9" class="container-pokemons">
     <app-card-pokemon-preview
+      *cdkVirtualFor="let pokemon of filterPokemons(pokemons, searchQuery)"
       [image]="getImageUrl(getIdFromURL(pokemon.url))"
       [id]="getIdFromURL(pokemon.url)"
       [name]="pokemon.name"
@@ -13,8 +13,7 @@
       [isSelected]="isSelected(pokemon.name)"
       [disabled]="pokemonNameSelected.length === 3"
     ></app-card-pokemon-preview>
-    }
-  </div>
+  </cdk-virtual-scroll-viewport>
   <br />
   <div class="flex justify-center">
     <app-button
