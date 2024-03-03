@@ -1,0 +1,16 @@
+<div class="container-input-search">
+  <mat-icon
+    aria-hidden="false"
+    aria-label="Buscador"
+    fontIcon="search"
+    class="search-icon"
+  ></mat-icon>
+
+  <input
+    [(ngModel)]="value"
+    type="text"
+    [value]="value"
+    (ngModelChange)="handleChange($event)"
+    placeholder="Buscar por índice, nombre..."
+  />
+</div>
