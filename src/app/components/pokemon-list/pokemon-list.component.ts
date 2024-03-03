@@ -7,6 +7,7 @@ import { AppState } from '../../store/app.state';
 import { setPokemonSelected } from '../../store/actions/Profile.actions';
 import { InputSearchComponent } from '../../shared/input-search/input-search.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -25,7 +26,7 @@ export class PokemonListComponent {
   pokemonNameSelected: string[] = [];
   searchQuery: string = '';
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private router: Router) {}
 
   getIdFromURL(url?: string): number {
     if (!url) return 0;
@@ -75,6 +76,7 @@ export class PokemonListComponent {
     ) as PokemonInit[];
 
     this.store.dispatch(setPokemonSelected({ data: pokemonList }));
+    this.router.navigateByUrl('/home');
   }
 
   filterPokemons(pokemonList: PokemonInit[], query: string): PokemonInit[] {
