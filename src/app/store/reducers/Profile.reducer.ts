@@ -21,5 +21,10 @@ export const ProfileReducer = createReducer(
   on(ProfileActions.setDataProfile, (state, action) => ({
     ...state,
     data: action.data,
+  })),
+  on(ProfileActions.setPokemonSelected, (state, action) => ({
+    ...state,
+    pokemons: action.data,
+    isComplete: true,
   }))
 );
