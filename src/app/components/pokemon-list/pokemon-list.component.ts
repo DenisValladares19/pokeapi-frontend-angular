@@ -2,17 +2,23 @@ import { Component, Input } from '@angular/core';
 import { CardPokemonPreviewComponent } from '../card-pokemon-preview/card-pokemon-preview.component';
 import { PokemonInit } from '../../interfaces/Pokemon.init';
 import { ButtonComponent } from '../../shared/button/button.component';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/app.state';
+import { setPokemonSelected } from '../../store/actions/Profile.actions';
+import { InputSearchComponent } from '../../shared/input-search/input-search.component';
 
 @Component({
   selector: 'app-pokemon-list',
   standalone: true,
-  imports: [CardPokemonPreviewComponent, ButtonComponent],
+  imports: [CardPokemonPreviewComponent, ButtonComponent, InputSearchComponent],
   templateUrl: './pokemon-list.component.html',
   styleUrl: './pokemon-list.component.scss',
 })
 export class PokemonListComponent {
   @Input() pokemons: PokemonInit[] = [];
   pokemonNameSelected: string[] = [];
+
+  constructor(private store: Store<AppState>) {}
 
   getIdFromURL(url?: string): number {
     if (!url) return 0;
@@ -26,7 +32,7 @@ export class PokemonListComponent {
   }
 
   getImageUrl(id: number): string {
-    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${id}.svg`;
+    return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png`;
   }
 
   handleClick(pokemonName: string) {
@@ -51,5 +57,16 @@ export class PokemonListComponent {
 
     const found = this.pokemonNameSelected.find((name) => name === pokemonName);
     return found ? true : false;
+  }
+
+  onSubmit() {
+    if (this.pokemonNameSelected.length < 3) return;
+    const pokemonList: PokemonInit[] = this.pokemonNameSelected.map(
+      (pokemonName) => {
+        return this.pokemons.find((pokemon) => pokemon.name === pokemonName);
+      }
+    ) as PokemonInit[];
+
+    this.store.dispatch(setPokemonSelected({ data: pokemonList }));
   }
 }
