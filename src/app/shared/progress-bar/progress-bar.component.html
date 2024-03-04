@@ -1,1 +1,7 @@
-<mat-progress-bar mode="determinate" [value]="progress"></mat-progress-bar>
+<mat-progress-bar
+  mode="determinate"
+  [value]="progress"
+  [style]="{
+    '--mdc-linear-progress-active-indicator-color': this.color + ' !important'
+  }"
+></mat-progress-bar>

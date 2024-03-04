@@ -21,10 +21,5 @@ export class ProgressBarComponent {
       '--mdc-linear-progress-track-height',
       '15px'
     );
-
-    document.documentElement.style.setProperty(
-      '--progress-bar-color-custom',
-      this.color
-    );
   }
 }
