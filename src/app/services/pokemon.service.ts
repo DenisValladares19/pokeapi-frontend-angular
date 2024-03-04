@@ -43,6 +43,8 @@ export class PokemonService {
     pokemon.stats = await this.getStats(pokemon);
     pokemon.typePokemon = await this.getTypes(pokemon);
     pokemon.color = await this.getColor(pokemon);
+    console.log('pokemon => ', pokemon);
+
     return pokemon;
   }
 
@@ -95,7 +97,7 @@ export class PokemonService {
 
   public async getColor(pokemon: Pokemon): Promise<string> {
     const result = await ObservableToPromise(
-      this.genericGet<{ color: TypePokemon }>(pokemon.especies.url)
+      this.genericGet<{ color: TypePokemon }>(pokemon.species.url)
     );
     return result.color.name;
   }
