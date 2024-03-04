@@ -73,6 +73,6 @@ export class HomeComponent implements OnInit {
   }
 
   goEditProfile() {
-    this.router.navigateByUrl('/pokemons');
+    this.router.navigateByUrl('/');
   }
 }

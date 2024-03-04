@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -17,6 +17,11 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 import { setDataProfile } from '../../store/actions/Profile.actions';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import {
+  selectIsComplete,
+  selectProfileData,
+} from '../../store/selectors/Profile.selector';
 
 @Component({
   selector: 'app-form-profile',
@@ -31,8 +36,9 @@ import { Router } from '@angular/router';
   templateUrl: './form-profile.component.html',
   styleUrl: './form-profile.component.scss',
 })
-export class FormProfileComponent {
+export class FormProfileComponent implements OnInit {
   @Input() imageUrl: string = '';
+  @Input() filename: string = '';
   favoriteHobbies: SelectOption[] = [
     { key: '1', value: 'Jugar Fútbol' },
     { key: '2', value: 'Jugar Basketball' },
@@ -43,6 +49,8 @@ export class FormProfileComponent {
   ];
 
   form: FormGroup;
+  private profile$: Observable<Profile>;
+  private isCompleted: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,6 +65,19 @@ export class FormProfileComponent {
       document: [''],
       minorityCard: [''],
     });
+    this.profile$ = this.store.select(selectProfileData);
+  }
+
+  ngOnInit(): void {
+    this.profile$.subscribe({
+      next: (profile) => {
+        this.setFormValues(profile);
+      },
+    });
+
+    this.store
+      .select(selectIsComplete)
+      .subscribe({ next: (value) => (this.isCompleted = value) });
   }
 
   getMaxDate(): Moment {
@@ -78,6 +99,7 @@ export class FormProfileComponent {
 
   onSubmit() {
     if (this.form.invalid) return;
+
     if (!this.imageUrl) {
       this.snackBar.open('La imagen de perfil es requerida', 'OK', {
         duration: 2000,
@@ -89,25 +111,44 @@ export class FormProfileComponent {
       name: this.form.value.name,
       birthDate: moment(this.form.value.birthDate),
       image: this.imageUrl,
-      hobbies: this.getFavoriteHobbies(this.form.value.hobbies),
+      hobbies: this.getFavoriteHobbies(this.form.value.hobbies, 'key', 'value'),
       document: this.form.value.document,
       minorityCard: this.form.value.minorityCard,
+      filename: this.filename,
     };
 
     this.store.dispatch(setDataProfile({ data: newProfile }));
+    if (this.isCompleted) {
+      this.router.navigateByUrl('/home');
+      return;
+    }
     this.router.navigateByUrl('/pokemons');
   }
 
-  private getFavoriteHobbies(hobbiesId?: string[]): string[] {
+  private getFavoriteHobbies(
+    hobbiesId: string[],
+    keyValidate: keyof SelectOption,
+    keyReturn: keyof SelectOption
+  ): string[] {
     if (!hobbiesId) return [];
     if (!Array.isArray(hobbiesId)) return [];
 
     const result = this.favoriteHobbies
       .filter((hobby) => {
-        return hobbiesId.find((item) => item === hobby.key);
+        return hobbiesId.find((item) => item === hobby[keyValidate]);
       })
-      .map((hobby) => hobby.value);
+      .map((hobby) => hobby[keyReturn]);
 
     return result;
+  }
+
+  setFormValues(profile: Profile) {
+    this.form.controls['name'].setValue(profile.name);
+    this.form.controls['birthDate'].setValue(profile.birthDate);
+    this.form.controls['document'].setValue(profile.document);
+    this.form.controls['minorityCard'].setValue(profile.minorityCard);
+    this.form.controls['hobbies'].setValue(
+      this.getFavoriteHobbies(profile.hobbies, 'value', 'key')
+    );
   }
 }

@@ -3,7 +3,7 @@
   <p>Selecciona 3 Pokémon para que sean parte de tu equipo</p>
   <app-input-search (onSearch)="handleSearch($event)"></app-input-search>
   <br />
-  <cdk-virtual-scroll-viewport itemSize="9" class="container-pokemons">
+  <cdk-virtual-scroll-viewport itemSize="3" class="container-pokemons">
     <app-card-pokemon-preview
       *cdkVirtualFor="let pokemon of filterPokemons(pokemons, searchQuery)"
       [image]="getImageUrl(getIdFromURL(pokemon.url))"
