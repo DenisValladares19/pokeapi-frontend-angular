@@ -3,7 +3,7 @@
 } @else {
 <div class="flex flex-column">
   <div class="flex gap-20 welcome-title">
-    <h1>¡Hola José!</h1>
+    <h1>¡Hola {{ formatName((profile$ | async)?.name) }}!</h1>
     <app-button
       label="Editar perfil"
       prefixIcon="edit"

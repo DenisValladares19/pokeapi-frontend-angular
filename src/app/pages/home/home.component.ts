@@ -7,9 +7,15 @@ import { PokemonService } from '../../services/pokemon.service';
 import { Pokemon } from '../../interfaces/Pokemon';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
-import { selectPokemonSelected } from '../../store/selectors/Profile.selector';
+import {
+  selectPokemonSelected,
+  selectProfileData,
+} from '../../store/selectors/Profile.selector';
 import { ObservableToPromise } from '../../shared/Observable.utils';
 import { LoadingFullScreenComponent } from '../../shared/loading-full-screen/loading-full-screen.component';
+import { Observable } from 'rxjs';
+import { Profile } from '../../interfaces/Profile';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -20,12 +26,14 @@ import { LoadingFullScreenComponent } from '../../shared/loading-full-screen/loa
     CardProfileComponent,
     PokemonListHomeComponent,
     LoadingFullScreenComponent,
+    AsyncPipe,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
   pokemons: Pokemon[] = [];
+  profile$: Observable<Profile>;
   loading: boolean = false;
 
   constructor(
@@ -33,6 +41,7 @@ export class HomeComponent implements OnInit {
     private store: Store<AppState>
   ) {
     this.pokemonService.getAllPokemon();
+    this.profile$ = this.store.select(selectProfileData);
   }
 
   async ngOnInit() {
@@ -54,5 +63,11 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       this.loading = false;
     }, 100);
+  }
+
+  formatName(name?: string) {
+    if (!name) return;
+
+    return name.split(' ')[0];
   }
 }
