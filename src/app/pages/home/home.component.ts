@@ -16,6 +16,7 @@ import { LoadingFullScreenComponent } from '../../shared/loading-full-screen/loa
 import { Observable } from 'rxjs';
 import { Profile } from '../../interfaces/Profile';
 import { AsyncPipe } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -38,7 +39,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private pokemonService: PokemonService,
-    private store: Store<AppState>
+    private store: Store<AppState>,
+    private router: Router
   ) {
     this.pokemonService.getAllPokemon();
     this.profile$ = this.store.select(selectProfileData);
@@ -69,5 +71,9 @@ export class HomeComponent implements OnInit {
     if (!name) return;
 
     return name.split(' ')[0];
+  }
+
+  goEditProfile() {
+    this.router.navigateByUrl('/pokemons');
   }
 }

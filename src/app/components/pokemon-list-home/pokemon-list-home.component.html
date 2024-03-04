@@ -1,6 +1,11 @@
 <div class="container-title-button">
   <h3>Mis Pokémon</h3>
-  <app-button label="Editar" prefixIcon="edit" [outline]="true"></app-button>
+  <app-button
+    label="Editar"
+    prefixIcon="edit"
+    (click)="goPokemons()"
+    [outline]="true"
+  ></app-button>
 </div>
 
 <cdk-virtual-scroll-viewport [itemSize]="3" class="container-pokemons-home">

@@ -3,6 +3,7 @@ import { CardPokemonHomeComponent } from '../card-pokemon-home/card-pokemon-home
 import { ButtonComponent } from '../../shared/button/button.component';
 import { Pokemon } from '../../interfaces/Pokemon';
 import { ScrollingModule } from '@angular/cdk/scrolling';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-list-home',
@@ -13,4 +14,10 @@ import { ScrollingModule } from '@angular/cdk/scrolling';
 })
 export class PokemonListHomeComponent {
   @Input() pokemons: Pokemon[] = [];
+
+  constructor(private router: Router) {}
+
+  goPokemons() {
+    this.router.navigateByUrl('/pokemons');
+  }
 }

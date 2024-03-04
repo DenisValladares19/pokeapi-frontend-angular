@@ -8,6 +8,8 @@ import { setPokemonSelected } from '../../store/actions/Profile.actions';
 import { InputSearchComponent } from '../../shared/input-search/input-search.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { selectPokemonSelected } from '../../store/selectors/Profile.selector';
 
 @Component({
   selector: 'app-pokemon-list',
@@ -25,8 +27,17 @@ export class PokemonListComponent {
   @Input() pokemons: PokemonInit[] = [];
   pokemonNameSelected: string[] = [];
   searchQuery: string = '';
+  pokemonSelected$: Observable<PokemonInit[]>;
 
-  constructor(private store: Store<AppState>, private router: Router) {}
+  constructor(private store: Store<AppState>, private router: Router) {
+    this.pokemonSelected$ = this.store.select(selectPokemonSelected);
+    this.pokemonSelected$.subscribe({
+      next: (pokemonSelectedStore) => {
+        if (!pokemonSelectedStore || pokemonSelectedStore.length === 0) return;
+        this.findPokemonSaveStore(pokemonSelectedStore);
+      },
+    });
+  }
 
   getIdFromURL(url?: string): number {
     if (!url) return 0;
@@ -91,5 +102,9 @@ export class PokemonListComponent {
 
   handleSearch(query: string) {
     this.searchQuery = query;
+  }
+
+  findPokemonSaveStore(pokemonList: PokemonInit[]): void {
+    this.pokemonNameSelected = pokemonList.map((pokemon) => pokemon.name);
   }
 }
