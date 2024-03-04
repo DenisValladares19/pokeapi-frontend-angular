@@ -75,12 +75,17 @@ $pokeapi-frontend-theme: mat.define-light-theme(
   align-items: center;
 }
 
+.justify-between {
+  justify-content: space-between;
+}
+
 :root {
   --primary-color: #01426a;
   --secondary-color: #454545;
   --tertiary-color: #ffc600;
   --neutral-color: #868686;
   --error-color: red;
+  --progress-bar-color-custom: green;
 }
 
 .profile-card {

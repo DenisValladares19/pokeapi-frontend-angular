@@ -1,0 +1,16 @@
+::ng-deep .mat-mdc-progress-bar {
+  width: 200px !important;
+  border-radius: 10px;
+  --mdc-linear-progress-active-indicator-color: var(
+    --progress-bar-color-custom
+  ) !important;
+  --mdc-linear-progress-track-color: rgba(63, 81, 181, 0.25);
+}
+
+::ng-deep .mdc-linear-progress__buffer-bar {
+  background-color: transparent !important;
+  box-shadow: 1px 1px 2px 0px rgba(174, 174, 192, 0.2) inset;
+  box-shadow: -1px -1px 1px 0px rgba(255, 255, 255, 0.7) inset;
+  border: 2px solid #fff;
+  border-radius: 10px !important;
+}
