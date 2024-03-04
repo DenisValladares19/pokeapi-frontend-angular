@@ -5,7 +5,7 @@ export interface Pokemon {
   typePokemon: string[];
   color: string;
   stats: Stat[];
-  sprites: Sprites[];
+  sprites: Sprites;
 }
 
 export interface Stat {
