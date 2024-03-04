@@ -24,3 +24,18 @@
     font-size: 20px;
   }
 }
+
+@media (max-width: 580px) {
+  .container-card-pokemon-home {
+    flex-direction: column;
+
+    .container-image-pokemon {
+      align-items: center;
+    }
+  }
+
+  .container-stat {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
