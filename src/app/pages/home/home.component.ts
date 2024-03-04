@@ -17,6 +17,7 @@ import { Observable } from 'rxjs';
 import { Profile } from '../../interfaces/Profile';
 import { AsyncPipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { formatProfileName } from '../../shared/String.utils';
 
 @Component({
   selector: 'app-home',
@@ -68,9 +69,7 @@ export class HomeComponent implements OnInit {
   }
 
   formatName(name?: string) {
-    if (!name) return;
-
-    return name.split(' ')[0];
+    return formatProfileName(name);
   }
 
   goEditProfile() {
