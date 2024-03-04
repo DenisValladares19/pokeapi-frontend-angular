@@ -14,7 +14,7 @@ import {
   switchMap,
   toArray,
 } from 'rxjs';
-import { Language, Pokemon, Stat } from '../interfaces/Pokemon';
+import { Language, Pokemon, Stat, TypePokemon } from '../interfaces/Pokemon';
 import { ResponsePokeAPI } from '../interfaces/ResponsePokeAPI';
 import { PokemonInit } from '../interfaces/Pokemon.init';
 import { ObservableToPromise } from '../shared/Observable.utils';
@@ -42,6 +42,7 @@ export class PokemonService {
     const pokemon = await ObservableToPromise(this.genericGet<Pokemon>(url));
     pokemon.stats = await this.getStats(pokemon);
     pokemon.typePokemon = await this.getTypes(pokemon);
+    pokemon.color = await this.getColor(pokemon);
     return pokemon;
   }
 
@@ -90,6 +91,13 @@ export class PokemonService {
     }
 
     return stats;
+  }
+
+  public async getColor(pokemon: Pokemon): Promise<string> {
+    const result = await ObservableToPromise(
+      this.genericGet<{ color: TypePokemon }>(pokemon.especies.url)
+    );
+    return result.color.name;
   }
 
   // private getObservablePokemons(

@@ -6,6 +6,7 @@ export interface Pokemon {
   color: string;
   stats: Stat[];
   sprites: Sprites;
+  especies: TypePokemon;
 }
 
 export interface Stat {
