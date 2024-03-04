@@ -1,0 +1,22 @@
+@if(loading) {
+<app-loading-full-screen title="Cargando perfil..."></app-loading-full-screen>
+} @else {
+<div class="flex flex-column">
+  <div class="flex gap-20 welcome-title">
+    <h1>¡Hola José!</h1>
+    <app-button
+      label="Editar perfil"
+      prefixIcon="edit"
+      [outline]="true"
+    ></app-button>
+  </div>
+
+  <div class="container-home">
+    <app-card-profile></app-card-profile>
+    <app-pokemon-list-home
+      class="pokemon-list-home"
+      [pokemons]="pokemons"
+    ></app-pokemon-list-home>
+  </div>
+</div>
+}

@@ -1,0 +1,24 @@
+.welcome-title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  h1 {
+    font-weight: 700;
+  }
+}
+
+.container-home {
+  display: flex;
+  gap: 10px;
+
+  .pokemon-list-home {
+    width: 100%;
+    padding-left: 20px;
+  }
+}
+
+@media (max-width: 1115px) {
+  .container-home {
+    flex-direction: column;
+    align-items: center;
+  }
+}
