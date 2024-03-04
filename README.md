@@ -6,6 +6,10 @@ Como libreria de componentes UI se utilizo [Angular Material](https://material.a
 
 Como gestor de estado global se utilizo [NGRX](https://ngrx.io/) para los datos del usuario, los pokemons seleccionados y una bandera para saber si completo la creación del perfil.
 
+## Demo
+
+[click](https://pokeapi-frontend-indol.vercel.app)
+
 ## Instalación
 
 1. Clonar el repositorio
