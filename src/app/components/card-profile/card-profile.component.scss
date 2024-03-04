@@ -7,6 +7,12 @@
   margin: 20px 0px;
 }
 
+.trainer {
+  font-size: 20px;
+  color: rgba(75, 75, 75, 1);
+  padding: 20px;
+}
+
 .profile-card .item {
   display: flex;
   justify-content: space-between;
@@ -18,4 +24,8 @@
     max-width: 150px;
     text-align: right;
   }
+}
+
+.min-width-profile {
+  min-width: 300px;
 }

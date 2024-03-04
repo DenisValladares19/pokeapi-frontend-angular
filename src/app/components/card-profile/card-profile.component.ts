@@ -4,7 +4,10 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../../store/app.state';
 import { Observable } from 'rxjs';
 import { Profile } from '../../interfaces/Profile';
-import { selectProfileData } from '../../store/selectors/Profile.selector';
+import {
+  selectIsComplete,
+  selectProfileData,
+} from '../../store/selectors/Profile.selector';
 import { AsyncPipe } from '@angular/common';
 import moment, { Moment } from 'moment';
 
@@ -17,8 +20,10 @@ import moment, { Moment } from 'moment';
 })
 export class CardProfileComponent {
   profile$: Observable<Profile>;
+  isComplete$: Observable<boolean>;
   constructor(private store: Store<AppState>) {
     this.profile$ = this.store.select(selectProfileData);
+    this.isComplete$ = this.store.select(selectIsComplete);
   }
 
   formatHobbies(hobbies?: string[]): string {

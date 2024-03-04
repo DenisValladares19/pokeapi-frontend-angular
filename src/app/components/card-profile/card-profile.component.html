@@ -1,5 +1,12 @@
-<div class="profile-card flex flex-column align-center">
+<div class="profile-card flex flex-column align-center min-width-profile">
+  @if (isComplete$ | async) {
+  <div class="flex justify-between w-100 trainer">
+    Entrenador
+    <img src="/assets/images/badge.png" alt="Insignia" />
+  </div>
+  }@else {
   <h3 class="profile-name">{{ (profile$ | async)?.name }}</h3>
+  }
   <app-avatar [imageUrl]="(profile$ | async)?.image || ''"></app-avatar>
 
   <div class="flex flex-column">
