@@ -143,6 +143,7 @@ export class FormProfileComponent implements OnInit {
   }
 
   setFormValues(profile: Profile) {
+    if (profile.name === '') return;
     this.form.controls['name'].setValue(profile.name);
     this.form.controls['birthDate'].setValue(profile.birthDate);
     this.form.controls['document'].setValue(profile.document);
