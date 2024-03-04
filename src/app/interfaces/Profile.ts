@@ -7,4 +7,5 @@ export interface Profile {
   document?: string;
   minorityCard?: string;
   image: string;
+  filename: string;
 }

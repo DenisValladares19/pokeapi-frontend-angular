@@ -11,6 +11,7 @@ const initialState: ProfileState = {
     document: '',
     minorityCard: '',
     image: '',
+    filename: '',
   },
   isComplete: false,
   pokemons: [],
