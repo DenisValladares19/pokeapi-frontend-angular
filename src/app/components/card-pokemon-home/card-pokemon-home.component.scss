@@ -1,0 +1,26 @@
+.container-card-pokemon-home {
+  box-shadow: 0px 8px 28px 0px rgba(120, 177, 181, 0.1);
+  background-color: rgba(242, 242, 242, 1);
+  border-radius: 15px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  padding: 20px 30px;
+  display: flex;
+
+  img {
+    width: 200px;
+    height: 200px;
+    margin-top: -20px;
+    margin-left: -25px;
+  }
+
+  .title-pokemon {
+    font-weight: 700;
+    font-size: 30px;
+  }
+
+  .stat-name {
+    color: rgba(75, 75, 75, 1);
+    font-size: 20px;
+  }
+}

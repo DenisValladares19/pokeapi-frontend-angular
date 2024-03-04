@@ -1,0 +1,20 @@
+<div class="container-card-pokemon-home gap-10">
+  <div class="flex flex-column">
+    <img
+      [src]="pokemon?.sprites?.other?.home?.front_default"
+      [alt]="pokemon?.name"
+    />
+
+    <p class="title-pokemon">{{ pokemon?.name }}</p>
+    <p>{{ pokemon?.typePokemon?.join("/") }}</p>
+  </div>
+
+  <div class="flex flex-column w-100">
+    @for (stat of pokemon?.stats; track $index) {
+    <div class="flex justify-between align-center">
+      <p class="stat-name">{{ stat?.name === "PS" ? "Salud" : stat?.name }}</p>
+      <app-progress-bar></app-progress-bar>
+    </div>
+    }
+  </div>
+</div>
