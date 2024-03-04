@@ -43,8 +43,6 @@ export class PokemonService {
     pokemon.stats = await this.getStats(pokemon);
     pokemon.typePokemon = await this.getTypes(pokemon);
     pokemon.color = await this.getColor(pokemon);
-    console.log('pokemon => ', pokemon);
-
     return pokemon;
   }
 
