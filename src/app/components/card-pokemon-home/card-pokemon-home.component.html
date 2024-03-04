@@ -1,5 +1,5 @@
 <div class="container-card-pokemon-home gap-10">
-  <div class="flex flex-column">
+  <div class="flex flex-column container-image-pokemon">
     <img
       [src]="pokemon?.sprites?.other?.home?.front_default"
       [alt]="pokemon?.name"
@@ -11,7 +11,7 @@
 
   <div class="flex flex-column w-100">
     @for (stat of pokemon?.stats; track $index) {
-    <div class="flex justify-between align-center">
+    <div class="flex justify-between align-center container-stat">
       <p class="stat-name">{{ stat?.name === "PS" ? "Salud" : stat?.name }}</p>
       <app-progress-bar
         [progress]="getProgress(stat)"
