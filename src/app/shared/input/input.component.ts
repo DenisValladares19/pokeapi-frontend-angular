@@ -11,6 +11,7 @@ import { Moment } from 'moment';
 import {
   AbstractControl,
   ControlValueAccessor,
+  FormsModule,
   NG_VALUE_ACCESSOR,
 } from '@angular/forms';
 import { keysErrors } from '../../interfaces/KeysError.input';
@@ -29,6 +30,7 @@ import { NgxMaskDirective } from 'ngx-mask';
     NgFor,
     MatDatepickerModule,
     NgxMaskDirective,
+    FormsModule,
   ],
   templateUrl: './input.component.html',
   styleUrl: './input.component.scss',
@@ -62,7 +64,8 @@ export class InputComponent implements ControlValueAccessor {
 
   onInputChange(event: any) {
     if (this.disabled) return;
-    this.value = event.target.value;
+
+    this.value = event;
     this.onTouched();
     this.onChange(this.value);
     this.markAsTouched();
@@ -71,6 +74,7 @@ export class InputComponent implements ControlValueAccessor {
   writeValue(obj: any): void {
     this.value = obj;
   }
+
   registerOnChange(onChange: any) {
     this.onChange = onChange;
   }

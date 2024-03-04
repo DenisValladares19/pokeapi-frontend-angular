@@ -2,6 +2,7 @@
   @if(typeInput == 'date') {
   <mat-form-field class="w-100" [className]="getClassName()">
     <mat-label>{{ label }} </mat-label>
+    <!-- [disabled]="disabled || disable" -->
     <input
       matInput
       [matDatepicker]="picker"
@@ -9,8 +10,8 @@
       [placeholder]="placeholder"
       [required]="required"
       [readOnly]="readOnly || disabled"
-      (dateChange)="onInputChange($event)"
-      [disabled]="disabled || disable"
+      [(ngModel)]="value"
+      (ngModelChange)="onInputChange($event)"
       [max]="maxDate"
       [min]="minDate"
     />
@@ -21,15 +22,15 @@
   <mat-form-field class="w-100" [className]="getClassName()">
     <mat-label>{{ label }} </mat-label>
 
+    <!-- [atte.disabled]="disabled || disable" -->
     <input
       matInput
       [type]="typeInput || 'text'"
-      [value]="value"
+      [(ngModel)]="value"
       [placeholder]="placeholder"
       [required]="required"
       [readOnly]="readOnly || disabled"
-      (input)="onInputChange($event)"
-      [disabled]="disabled || disable"
+      (ngModelChange)="onInputChange($event)"
       [mask]="mask"
     />
   </mat-form-field>
