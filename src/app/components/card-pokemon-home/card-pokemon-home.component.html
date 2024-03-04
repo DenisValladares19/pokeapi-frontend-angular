@@ -13,7 +13,7 @@
     @for (stat of pokemon?.stats; track $index) {
     <div class="flex justify-between align-center">
       <p class="stat-name">{{ stat?.name === "PS" ? "Salud" : stat?.name }}</p>
-      <app-progress-bar></app-progress-bar>
+      <app-progress-bar [color]="pokemon?.color || ''"></app-progress-bar>
     </div>
     }
   </div>
